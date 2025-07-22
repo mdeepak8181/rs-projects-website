@@ -1,16 +1,17 @@
-import Seo from '@/components/Seo'
-import Hero from '@/components/Hero'
-import ValuePropositions from '@/components/ValuePropositions'
-import Portfolio from '@/components/Portfolio'
-import CommunitiesCarousel from '@/components/CommunitiesCarousel'
-import GalleriesCarousel from '@/components/GalleriesCarousel'
-import ContactForm from '@/components/ContactForm'
-import { getCommunities } from '@/lib/getCommunities'
-import { getGalleries } from '@/lib/getGalleries'
+import { Suspense } from 'react';
+import Portfolio from '@/components/Portfolio';
+import Hero from '@/components/Hero';
+import ValuePropositions from '@/components/ValuePropositions';
+import CommunitiesCarousel from '@/components/CommunitiesCarousel';
+import GalleriesCarousel from '@/components/GalleriesCarousel';
+import ContactForm from '@/components/ContactForm';
+import { getCommunities } from '@/lib/getCommunities';
+import { getGalleries } from '@/lib/getGalleries';
+import Seo from '@/components/Seo';
 
 export default async function HomePage() {
-  const communities = await getCommunities()
-  const galleries = await getGalleries()
+  const communities = await getCommunities();
+  const galleries = await getGalleries();
 
   return (
     <>
@@ -21,7 +22,9 @@ export default async function HomePage() {
       <main className="bg-black text-white">
         <Hero />
         <ValuePropositions />
-        <Portfolio />
+        <Suspense fallback={<div>Loading portfolio...</div>}>
+          <Portfolio />
+        </Suspense>
         <CommunitiesCarousel communities={communities} />
         <GalleriesCarousel galleries={galleries} />
         <section id="contact">
@@ -29,5 +32,5 @@ export default async function HomePage() {
         </section>
       </main>
     </>
-  )
+  );
 }

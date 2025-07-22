@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -17,16 +21,30 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/lib/*": ["src/lib/*"],
-      "@/sanity/*": ["src/sanity/*"],
-      "@/*": ["src/*"]
+      "@/lib/*": [
+        "src/lib/*"
+      ],
+      "@/sanity/*": [
+        "src/sanity/*"
+      ],
+      "@/*": [
+        "src/*"
+      ]
     },
-    "types": ["node", "react", "react-dom"],
-     
-    "plugins": [{ "name": "next" }],
-      "typeRoots": ["./node_modules/@types", "./types"],
-      
-
+    "types": [
+      "node",
+      "react",
+      "react-dom"
+    ],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ]
   },
   "include": [
     "**/*.ts",
@@ -34,5 +52,8 @@
     "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    ".next"
+  ]
 }
