@@ -1,0 +1,35 @@
+{
+  "name": "rs-projects-website",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@formspree/react": "^3.0.0",
+    "@hookform/resolvers": "^5.1.1",
+    "@portabletext/react": "^3.2.1",
+    "@sanity/client": "^7.8.0",
+    "@sanity/vision": "^4.2.0",
+    "lucide-react": "^0.525.0",
+    "next": "^15.4.2",
+    "next-sanity": "^10.0.6",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.60.0",
+    "react-is": "^19.1.0",
+    "sanity": "^4.2.0",
+    "styled-components": "^6.1.19",
+    "zod": "^4.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.9",
+    "@types/react": "^18.2.44",
+    "@types/react-dom": "^18.2.17",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5"
+  }
+}
