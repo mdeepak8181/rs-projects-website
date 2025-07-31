@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
@@ -19,22 +19,33 @@ interface CommunitiesCarouselProps {
 export default function CommunitiesCarousel({ communities }: CommunitiesCarouselProps) {
   const [selectedCommunity, setSelectedCommunity] = useState<Community | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const visibleCommunities = communities.slice(currentIndex, currentIndex + 4)
 
   const nextSlide = () => {
-    if (currentIndex + 1 < communities.length) {
-      setCurrentIndex(currentIndex + 1)
-    }
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % communities.length)
   }
 
   const prevSlide = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1)
-    }
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? communities.length - 1 : prevIndex - 1
+    )
   }
 
+  useEffect(() => {
+    const container = scrollRef.current
+    if (container) {
+      container.scrollTo({
+        left: currentIndex * 310,
+        behavior: 'smooth'
+      })
+    }
+  }, [currentIndex])
+
   return (
-    <section className="py-20 bg-black">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="py-24 bg-black" id="communities">
+      <div className="max-w-7xl mx-auto px-4 relative">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
@@ -49,7 +60,10 @@ export default function CommunitiesCarousel({ communities }: CommunitiesCarousel
         </motion.div>
 
         <div className="relative">
-          <div className="flex space-x-6 overflow-x-auto scroll-smooth scrollbar-hide snap-x snap-mandatory">
+          <div
+            ref={scrollRef}
+            className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory md:overflow-hidden"
+          >
             {communities.map((community, index) => (
               <motion.div
                 key={community.name}
@@ -79,38 +93,25 @@ export default function CommunitiesCarousel({ communities }: CommunitiesCarousel
             ))}
           </div>
 
-          {/* Arrows */}
-          <button
-            onClick={prevSlide}
-            disabled={currentIndex === 0}
-            className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-zinc-800 text-white px-3 py-2 rounded-full shadow-md hover:bg-zinc-700"
-          >
-            &#8592;
-          </button>
+          {/* Arrows (visible on md and above) */}
+          <div className="hidden md:flex absolute top-1/2 left-0 z-10 -translate-y-1/2">
+            <button
+              onClick={prevSlide}
+              className="bg-zinc-800 text-white px-3 py-2 rounded-full shadow-md hover:bg-zinc-700"
+            >
+              &#8592;
+            </button>
+          </div>
 
-          <button
-            onClick={nextSlide}
-            disabled={currentIndex + 1 >= communities.length}
-            className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-zinc-800 text-white px-3 py-2 rounded-full shadow-md hover:bg-zinc-700"
-          >
-            &#8594;
-          </button>
+          <div className="hidden md:flex absolute top-1/2 right-0 z-10 -translate-y-1/2">
+            <button
+              onClick={nextSlide}
+              className="bg-zinc-800 text-white px-3 py-2 rounded-full shadow-md hover:bg-zinc-700"
+            >
+              &#8594;
+            </button>
+          </div>
         </div>
-{/* Left Arrow */}
-<button
-  onClick={prevSlide}
-  className="hidden md:block absolute top-1/2 left-0 transform -translate-y-1/2 z-10 bg-green-800 text-white p-3 rounded-full shadow-lg hover:bg-green-700 transition"
->
-  &#8592;
-</button>
-
-{/* Right Arrow */}
-<button
-  onClick={nextSlide}
-  className="hidden md:block absolute top-1/2 right-0 transform -translate-y-1/2 z-10 bg-green-800 text-white p-3 rounded-full shadow-lg hover:bg-green-700 transition"
->
-  &#8594;
-</button>
 
         {/* Modal */}
         {selectedCommunity && (
