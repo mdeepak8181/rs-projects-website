@@ -17,10 +17,10 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full min-h-screen overflow-hidden">
       {videoUrl && (
         <video
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          className="absolute inset-0 w-full h-full object-cover object-center z-0"
           autoPlay
           loop
           muted
