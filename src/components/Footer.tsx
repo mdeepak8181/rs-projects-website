@@ -17,9 +17,9 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 bg-[#9CAF88]/20 rounded-full flex items-center justify-center border border-[#9CAF88] mr-4">
-                <div className="text-lg font-bold text-[#9CAF88]">RS</div>
+                <div className="text-lg font-bold text-green-800">RS</div>
               </div>
-              <div className="text-2xl font-bold text-[#9CAF88]">RS PROJECTS</div>
+              <div className="text-2xl font-bold text-green-800">RS PROJECTS</div>
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
               Building Life&apos;s Backdrop - Creating exceptional custom homes that become the foundation for your family&apos;s most treasured memories.

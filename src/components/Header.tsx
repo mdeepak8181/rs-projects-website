@@ -21,7 +21,7 @@ export default function Header() {
         { name: 'About Us', href: '/#about' },
         { name: 'Portfolio', href: '/portfolio' },
         { name: 'Communities', href: '/communities' },
-        { name: 'Galleries', href: '/galleries' },
+        { name: 'Galleries', href: '/#galleries' },
         { name: 'Contact', href: '/#contact' },
     ]
 
@@ -35,12 +35,12 @@ export default function Header() {
             transition={{ duration: 0.6 }}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-20 md:h-24">
+                <div className="flex items-center justify-between min-h-[120px] md:min-h-[140] py-2">
                     {/* Logo */}
                     <motion.div whileHover={{ scale: 1.05 }} className="cursor-pointer flex-shrink-0 max-w-[120px] md:max-w-[140px]">
                         <Link href="/">
                             <Image
-                                src="/images/rs-logo.png"
+                                src="/images/logo-main.png"
                                 alt="RS Projects Logo"
                                 width={140}
                                 height={40}
