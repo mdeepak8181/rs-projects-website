@@ -39,7 +39,7 @@ export default function Communities({ communities }: CommunitiesProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold text-green-800 mb-4">Communities</h2>
+          <h2 id="communities" className="text-4xl font-bold text-green-800 mb-4 scroll-mt-28">Communities</h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
             RS Projects is proud to partner with well-regarded developers that put effort into creating
             communities that are carefully planned from their inception.
