@@ -33,7 +33,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/60 z-10" />
 
       <div className="absolute inset-y-0 left-0 h-full w-[60%] md:w-[42%] bg-zinc-900/30 md:bg-zinc-900/60 z-20 flex items-center justify-center md:justify-end">
-        <div className="w-full px-4 md:px-8 space-y-6 text-center md:text-right max-w-xs md:max-w-lg">
+        <div className="w-full px-4 md:px-8 space-y-6 text-right max-w-xs md:max-w-lg">
           <motion.h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-green-800 tracking-wide"
             initial={{ opacity: 0, y: 50 }}
