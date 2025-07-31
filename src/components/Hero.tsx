@@ -32,51 +32,57 @@ export default function Hero() {
 
       <div className="absolute inset-0 bg-black/60 z-10" />
 
-      <div className="absolute inset-0 z-20 flex flex-col md:flex-row items-center md:items-start justify-center md:justify-end px-4">
-        <div className="bg-zinc-900/60 w-full md:w-[42%] h-full flex items-center justify-center">
-          <div className="w-full max-w-lg px-6 py-10 space-y-6 text-center md:text-right">
-            <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-green-800 tracking-wide"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.2 }}
-            >
-              RS PROJECTS
-            </motion.h1>
+      <div className="absolute inset-y-0 left-0 w-full md:w-[42%] h-full bg-zinc-900/60 z-20 flex items-center">
+        <div className="w-full px-6 sm:px-8 space-y-6 sm:space-y-8 text-right max-w-lg ml-auto">
+          <motion.h1
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-green-800 tracking-wide"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.2 }}
+          >
+            RS PROJECTS
+          </motion.h1>
 
-            <motion.div
-              className="space-y-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.5 }}
-            >
-              <p className="text-white text-lg sm:text-xl md:text-2xl leading-tight">Crafting Innovative Spaces</p>
-              <p className="text-white text-lg sm:text-xl md:text-2xl leading-tight">Where Families</p>
-              <p className="text-white text-lg sm:text-xl md:text-2xl leading-tight">Thrive, Grow, And</p>
-              <p className="text-white text-lg sm:text-xl md:text-2xl leading-tight">Make Unforgettable Memories</p>
-            </motion.div>
+          <motion.div
+            className="space-y-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.5 }}
+          >
+            <motion.h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light text-white leading-tight">
+              Crafting Innovative Spaces
+            </motion.h2>
+            <motion.h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light text-white leading-tight">
+              Where Families
+            </motion.h2>
+            <motion.h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light text-white leading-tight">
+              Thrive, Grow, And
+            </motion.h2>
+            <motion.h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light text-white leading-tight">
+              Make Unforgettable Memories
+            </motion.h2>
+          </motion.div>
 
-            <motion.p
-              className="text-gray-300 text-base sm:text-lg"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 2.5 }}
-            >
-              From Concept to Creation
-            </motion.p>
+          <motion.p
+            className="text-base sm:text-lg md:text-xl text-gray-300"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 2.5 }}
+          >
+            From Concept to Creation
+          </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 3 }}
-            >
-              <Link href="#about">
-                <button className="bg-green-800 text-white px-6 py-3 rounded-lg font-semibold text-base hover:bg-green-900 transition-all duration-300 transform hover:scale-105">
-                  Learn More About Us
-                </button>
-              </Link>
-            </motion.div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 3 }}
+          >
+            <Link href="#about">
+              <button className="bg-green-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-green-900 transition-all duration-300 transform hover:scale-105">
+                Learn More About Us
+              </button>
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>
