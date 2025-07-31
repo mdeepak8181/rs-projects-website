@@ -18,34 +18,18 @@ interface CommunitiesCarouselProps {
 
 export default function CommunitiesCarousel({ communities }: CommunitiesCarouselProps) {
   const [selectedCommunity, setSelectedCommunity] = useState<Community | null>(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
 
-  const visibleCommunities = communities.slice(currentIndex, currentIndex + 4)
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % communities.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? communities.length - 1 : prevIndex - 1
-    )
-  }
-
-  useEffect(() => {
-    const container = scrollRef.current
-    if (container) {
-      container.scrollTo({
-        left: currentIndex * 310,
-        behavior: 'smooth'
-      })
+  const scrollByCard = (direction: 'left' | 'right') => {
+    if (carouselRef.current) {
+      const scrollAmount = direction === 'left' ? -320 : 320
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
     }
-  }, [currentIndex])
+  }
 
   return (
-    <section className="py-24 bg-black" id="communities">
-      <div className="max-w-7xl mx-auto px-4 relative">
+    <section className="py-20 bg-black">
+      <div className="max-w-7xl mx-auto px-4">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
@@ -53,21 +37,28 @@ export default function CommunitiesCarousel({ communities }: CommunitiesCarousel
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold text-green-800 mb-4">Our Communities</h2>
+          <h2
+            id="communities"
+            className="text-4xl font-bold text-green-800 mb-4 scroll-mt-36 md:scroll-mt-40"
+          >
+            Communities
+          </h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Carefully planned communities designed to match your lifestyle.
+            RS Projects is proud to partner with well-regarded developers that put effort into creating
+            communities that are carefully planned from their inception.
           </p>
         </motion.div>
 
         <div className="relative">
+          {/* Carousel */}
           <div
-            ref={scrollRef}
-            className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory md:overflow-hidden"
+            ref={carouselRef}
+            className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4 snap-x snap-mandatory"
           >
             {communities.map((community, index) => (
               <motion.div
                 key={community.name}
-                className="bg-zinc-900 rounded-lg min-w-[300px] snap-start overflow-hidden hover:bg-zinc-800 transition-all duration-300 cursor-pointer transform hover:scale-105"
+                className="bg-zinc-900 rounded-lg min-w-[300px] max-w-sm snap-start overflow-hidden hover:bg-zinc-800 transition-all duration-300 cursor-pointer transform hover:scale-105"
                 onClick={() => setSelectedCommunity(community)}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -93,27 +84,24 @@ export default function CommunitiesCarousel({ communities }: CommunitiesCarousel
             ))}
           </div>
 
-          {/* Arrows (visible on md and above) */}
-          <div className="hidden md:flex absolute top-1/2 left-0 z-10 -translate-y-1/2">
+          {/* Arrows (desktop only) */}
+          <div className="hidden md:flex justify-between absolute top-1/2 left-0 right-0 px-4 -translate-y-1/2 z-10 pointer-events-none">
             <button
-              onClick={prevSlide}
-              className="bg-zinc-800 text-white px-3 py-2 rounded-full shadow-md hover:bg-zinc-700"
+              onClick={() => scrollByCard('left')}
+              className="pointer-events-auto bg-zinc-800 text-white p-3 rounded-full shadow-md hover:bg-zinc-700 transition"
             >
               &#8592;
             </button>
-          </div>
-
-          <div className="hidden md:flex absolute top-1/2 right-0 z-10 -translate-y-1/2">
             <button
-              onClick={nextSlide}
-              className="bg-zinc-800 text-white px-3 py-2 rounded-full shadow-md hover:bg-zinc-700"
+              onClick={() => scrollByCard('right')}
+              className="pointer-events-auto bg-zinc-800 text-white p-3 rounded-full shadow-md hover:bg-zinc-700 transition"
             >
               &#8594;
             </button>
           </div>
         </div>
 
-        {/* Modal */}
+        {/* Popup Modal */}
         {selectedCommunity && (
           <motion.div
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
@@ -150,9 +138,7 @@ export default function CommunitiesCarousel({ communities }: CommunitiesCarousel
               </div>
 
               <div className="p-6">
-                <p className="text-gray-300 mb-6 leading-relaxed">
-                  {selectedCommunity.description}
-                </p>
+                <p className="text-gray-300 mb-6 leading-relaxed">{selectedCommunity.description}</p>
 
                 <h3 className="text-xl font-semibold text-white mb-4">Community Features</h3>
                 <div className="grid grid-cols-2 gap-3 mb-6">
