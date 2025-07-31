@@ -15,8 +15,9 @@
 }
 
 html {
-  scroll-padding-top: 100px; /* Adjust this value to match your header height */
+  scroll-behavior: smooth;
 }
+
 
 
 @media (prefers-color-scheme: dark) {
