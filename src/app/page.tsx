@@ -23,7 +23,9 @@ export default async function HomePage() {
         <Hero />
         <ValuePropositions />
         <Suspense fallback={<div>Loading portfolio...</div>}>
+          <section id="portfolio">
           <Portfolio />
+          </section>
         </Suspense>
         <CommunitiesCarousel communities={communities} />
         <GalleriesCarousel galleries={galleries} />
