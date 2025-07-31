@@ -96,6 +96,21 @@ export default function CommunitiesCarousel({ communities }: CommunitiesCarousel
             &#8594;
           </button>
         </div>
+{/* Left Arrow */}
+<button
+  onClick={prevSlide}
+  className="hidden md:block absolute top-1/2 left-0 transform -translate-y-1/2 z-10 bg-green-800 text-white p-3 rounded-full shadow-lg hover:bg-green-700 transition"
+>
+  &#8592;
+</button>
+
+{/* Right Arrow */}
+<button
+  onClick={nextSlide}
+  className="hidden md:block absolute top-1/2 right-0 transform -translate-y-1/2 z-10 bg-green-800 text-white p-3 rounded-full shadow-lg hover:bg-green-700 transition"
+>
+  &#8594;
+</button>
 
         {/* Modal */}
         {selectedCommunity && (
