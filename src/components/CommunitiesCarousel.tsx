@@ -20,10 +20,8 @@ export default function CommunitiesCarousel({ communities }: CommunitiesCarousel
   const [selectedCommunity, setSelectedCommunity] = useState<Community | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const visibleCommunities = communities.slice(currentIndex, currentIndex + 4)
-
   const nextSlide = () => {
-    if (currentIndex + 4 < communities.length) {
+    if (currentIndex + 1 < communities.length) {
       setCurrentIndex(currentIndex + 1)
     }
   }
@@ -51,11 +49,11 @@ export default function CommunitiesCarousel({ communities }: CommunitiesCarousel
         </motion.div>
 
         <div className="relative">
-          <div className="flex space-x-6 overflow-hidden">
-            {visibleCommunities.map((community, index) => (
+          <div className="flex space-x-6 overflow-x-auto scroll-smooth scrollbar-hide snap-x snap-mandatory">
+            {communities.map((community, index) => (
               <motion.div
                 key={community.name}
-                className="bg-zinc-900 rounded-lg min-w-[300px] overflow-hidden hover:bg-zinc-800 transition-all duration-300 cursor-pointer transform hover:scale-105"
+                className="bg-zinc-900 rounded-lg min-w-[300px] snap-start overflow-hidden hover:bg-zinc-800 transition-all duration-300 cursor-pointer transform hover:scale-105"
                 onClick={() => setSelectedCommunity(community)}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -81,6 +79,7 @@ export default function CommunitiesCarousel({ communities }: CommunitiesCarousel
             ))}
           </div>
 
+          {/* Arrows */}
           <button
             onClick={prevSlide}
             disabled={currentIndex === 0}
@@ -91,13 +90,14 @@ export default function CommunitiesCarousel({ communities }: CommunitiesCarousel
 
           <button
             onClick={nextSlide}
-            disabled={currentIndex + 4 >= communities.length}
+            disabled={currentIndex + 1 >= communities.length}
             className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-zinc-800 text-white px-3 py-2 rounded-full shadow-md hover:bg-zinc-700"
           >
             &#8594;
           </button>
         </div>
 
+        {/* Modal */}
         {selectedCommunity && (
           <motion.div
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
