@@ -18,6 +18,7 @@ export default function Hero() {
 
   return (
     <section className="relative w-full h-screen overflow-hidden">
+      {/* Background Video */}
       {videoUrl && (
         <video
           className="absolute inset-0 w-full h-full object-cover z-0"
@@ -30,10 +31,13 @@ export default function Hero() {
         </video>
       )}
 
+      {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/60 z-10" />
 
-      <div className="absolute inset-y-0 left-0 w-[42%] h-full bg-zinc-900/60 z-20 flex items-center">
-        <div className="w-full px-8 space-y-8 text-right max-w-lg ml-auto">
+      {/* Content Section */}
+      <div className="absolute inset-0 flex items-center justify-center md:justify-end z-20 px-4 sm:px-6">
+        <div className="bg-zinc-900/60 w-full md:w-[42%] p-6 sm:p-8 rounded-lg md:rounded-none max-w-md md:max-w-lg text-center md:text-right space-y-6">
+          {/* Main Heading */}
           <motion.h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-green-800 tracking-wide"
             initial={{ opacity: 0, y: 50 }}
@@ -43,23 +47,31 @@ export default function Hero() {
             RS PROJECTS
           </motion.h1>
 
-          <motion.div className="space-y-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.5 }}>
-            <motion.h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white leading-tight">
-              Crafting Innovative Spaces
-            </motion.h2>
-            <motion.h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white leading-tight">
-              Where Families
-            </motion.h2>
-            <motion.h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white leading-tight">
-              Thrive, Grow, And
-            </motion.h2>
-            <motion.h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white leading-tight">
-              Make Unforgettable Memories
-            </motion.h2>
+          {/* Subheadings */}
+          <motion.div
+            className="space-y-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.5 }}
+          >
+            {[
+              'Crafting Innovative Spaces',
+              'Where Families',
+              'Thrive, Grow, And',
+              'Make Unforgettable Memories',
+            ].map((line, index) => (
+              <motion.h2
+                key={index}
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-white leading-tight"
+              >
+                {line}
+              </motion.h2>
+            ))}
           </motion.div>
 
+          {/* Supporting Text */}
           <motion.p
-            className="text-lg sm:text-xl text-gray-300"
+            className="text-base sm:text-lg text-gray-300"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 2.5 }}
@@ -67,9 +79,14 @@ export default function Hero() {
             From Concept to Creation
           </motion.p>
 
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.9 }}>
+          {/* Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.9 }}
+          >
             <Link href="#about">
-              <button className="bg-green-800 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-900 transition-all duration-300 transform hover:scale-105">
+              <button className="bg-green-800 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-green-900 transition-all duration-300 transform hover:scale-105">
                 Learn More About Us
               </button>
             </Link>
