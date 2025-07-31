@@ -19,8 +19,8 @@ export default function Header() {
 
     const navItems = [
         { name: 'About Us', href: '/#about' },
-        { name: 'Portfolio', href: '/portfolio' },
-        { name: 'Communities', href: '/communities' },
+        { name: 'Portfolio', href: '/#portfolio' },
+        { name: 'Communities', href: '/#communities' },
         { name: 'Galleries', href: '/#galleries' },
         { name: 'Contact', href: '/#contact' },
     ]
