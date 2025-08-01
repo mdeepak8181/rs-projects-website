@@ -37,9 +37,7 @@ export default function Portfolio() {
   const [filter, setFilter] = useState<'All' | 'Spec' | 'Custom' | 'Sold'>('All')
 
   useEffect(() => {
-    getProjects().then((data) => {
-      setProjects(data)
-    })
+    getProjects().then((data) => setProjects(data))
   }, [])
 
   const filteredProjects = communityParam
@@ -84,23 +82,14 @@ export default function Portfolio() {
   return (
     <section className="py-16 bg-zinc-900 text-white min-h-screen">
       <div className="max-w-7xl mx-auto px-4">
-
         {communityParam && (
-          <div className="flex flex-wrap justify-center gap-3 mb-6">
-  {['All', 'Spec', 'Custom', 'Sold'].map((category) => (
-    <button
-      key={category}
-      onClick={() => setFilter(category as 'All' | 'Spec' | 'Custom' | 'Sold')}
-      className={`px-4 py-2 text-sm sm:text-base rounded-full font-medium transition-all duration-300 ${
-        filter === category
-          ? 'bg-green-800 text-white'
-          : 'bg-zinc-800 text-gray-300 hover:bg-green-700 hover:text-white'
-      }`}
-    >
-      {category === 'All' ? 'All Projects' : `${category} Homes`}
-    </button>
-  ))}
-</div>
+          <div className="mb-4 flex justify-end">
+            <Link href="/communities">
+              <span className="text-green-800 underline hover:text-green-900 transition-colors cursor-pointer">
+                ← Back to Communities
+              </span>
+            </Link>
+          </div>
         )}
 
         <motion.div
@@ -112,18 +101,17 @@ export default function Portfolio() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-800">
             {communityParam ? `Homes in ${communityParam}` : 'Our Project Portfolio'}
           </h2>
-
           <p className="max-w-xl mx-auto text-gray-300 mb-6">
             Discover our latest custom homes and renovations. Each project showcases our commitment to exceptional craftsmanship, innovative design, and client satisfaction.
           </p>
 
           {!communityParam && (
-            <div className="flex justify-center space-x-4 flex-wrap">
+            <div className="flex justify-center space-x-2 flex-wrap">
               {['All', 'Spec', 'Custom', 'Sold'].map((category) => (
                 <button
                   key={category}
                   onClick={() => setFilter(category as 'All' | 'Spec' | 'Custom' | 'Sold')}
-                  className={`px-5 py-2 rounded-full font-medium transition-all duration-300 ${
+                  className={`px-4 py-2 rounded-full font-medium text-sm mb-2 transition-all duration-300 ${
                     filter === category
                       ? 'bg-green-800 text-white'
                       : 'bg-zinc-800 text-gray-300 hover:bg-green-700 hover:text-white'
@@ -136,7 +124,8 @@ export default function Portfolio() {
           )}
         </motion.div>
 
-        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Responsive Projects Section */}
+        <div className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
           {filteredProjects.map((project) => (
             <motion.div
               key={project._id}
@@ -169,8 +158,39 @@ export default function Portfolio() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
+        {/* Mobile Horizontal Scroll Carousel */}
+        <div className="flex md:hidden space-x-4 overflow-x-auto pb-4 snap-x snap-mandatory">
+          {filteredProjects.map((project) => (
+            <div
+              key={project._id}
+              className="snap-center min-w-[90%] bg-white text-black rounded-xl shadow-lg overflow-hidden flex-shrink-0"
+            >
+              <div className="relative h-64 w-full">
+                <Image
+                  src={project.images.hero}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="text-lg font-bold">{project.title}</h3>
+                <p className="text-sm text-gray-600">{project.location}</p>
+                <p className="text-sm text-gray-700 mb-3">{project.description}</p>
+                <button
+                  onClick={() => openGallery(project, 0)}
+                  className="w-full bg-green-800 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-900 transition-colors"
+                >
+                  View Gallery
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Gallery Modal */}
         <AnimatePresence>
           {isGalleryOpen && selectedProject && (
             <motion.div
