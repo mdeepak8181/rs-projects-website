@@ -86,13 +86,21 @@ export default function Portfolio() {
       <div className="max-w-7xl mx-auto px-4">
 
         {communityParam && (
-          <div className="mb-4 flex justify-end">
-            <Link href="/communities">
-              <span className="text-green-800 underline hover:text-green-900 transition-colors cursor-pointer">
-                ← Back to Communities
-              </span>
-            </Link>
-          </div>
+          <div className="flex flex-wrap justify-center gap-3 mb-6">
+  {['All', 'Spec', 'Custom', 'Sold'].map((category) => (
+    <button
+      key={category}
+      onClick={() => setFilter(category as 'All' | 'Spec' | 'Custom' | 'Sold')}
+      className={`px-4 py-2 text-sm sm:text-base rounded-full font-medium transition-all duration-300 ${
+        filter === category
+          ? 'bg-green-800 text-white'
+          : 'bg-zinc-800 text-gray-300 hover:bg-green-700 hover:text-white'
+      }`}
+    >
+      {category === 'All' ? 'All Projects' : `${category} Homes`}
+    </button>
+  ))}
+</div>
         )}
 
         <motion.div
