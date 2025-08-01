@@ -106,7 +106,7 @@ export default function Portfolio() {
           </p>
 
           {!communityParam && (
-            <div className="flex justify-center space-x-2 flex-wrap">
+            <div className="flex justify-center gap-2 flex-wrap max-w-full px-2">
               {['All', 'Spec', 'Custom', 'Sold'].map((category) => (
                 <button
                   key={category}
