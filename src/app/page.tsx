@@ -48,17 +48,17 @@ export default function HomePage() {
         <Hero />
         <ValuePropositions />
         <Suspense fallback={<div>Loading portfolio...</div>}>
-          <section id="portfolio">
+          <section id="portfolio" className="scroll-mt-32">
             <Portfolio />
           </section>
         </Suspense>
-        <section id="communities">
+        <section id="communities" className="scroll-mt-32">
           <CommunitiesCarousel communities={communities} />
         </section>
-        <section id="galleries">
+        <section id="galleries" className="scroll-mt-32">
           <GalleriesCarousel galleries={galleries} />
         </section>
-        <section id="contact">
+        <section id="contact" className="scroll-mt-32">
           <ContactForm />
         </section>
       </main>
