@@ -17,7 +17,7 @@ function generateSlug(title: string) {
 
 export default function GalleriesCarousel({ galleries }: { galleries: Gallery[] }) {
   return (
-    <section id="galleries" className="py-16 bg-black text-white">
+    <section id="galleries" className="py-16 bg-zinc-900 text-white">
       <div className="max-w-7xl mx-auto px-4">
         {/* Heading */}
         <div className="text-center max-w-2xl mx-auto mb-10">

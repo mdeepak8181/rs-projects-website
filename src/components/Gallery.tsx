@@ -12,7 +12,7 @@ interface Gallery {
 
 export default function GalleryComponent({ galleries }: { galleries: Gallery[] }) {
   return (
-    <section className="py-16 bg-black text-white" id="galleries">
+    <section className="py-16 bg-zinc-900 text-white" id="galleries">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-4xl font-bold text-green-800 mb-4">Galleries</h2>
         <p className="text-gray-300 mb-10">
