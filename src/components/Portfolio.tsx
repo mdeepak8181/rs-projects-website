@@ -164,9 +164,9 @@ export default function Portfolio() {
         <div className="flex md:hidden space-x-4 overflow-x-auto pb-4 snap-x snap-mandatory">
           {filteredProjects.map((project) => (
             <div
-              key={project._id}
-              className="snap-center min-w-[90%] bg-white text-black rounded-xl shadow-lg overflow-hidden flex-shrink-0"
-            >
+  key={project._id}
+  className="snap-center w-[90%] max-w-xs bg-white text-black rounded-xl shadow-lg overflow-hidden mx-auto flex-shrink-0"
+>
               <div className="relative h-64 w-full">
                 <Image
                   src={project.images.hero}
